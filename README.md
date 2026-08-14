@@ -16,7 +16,6 @@ Analysis code for Structure-based virtual screening identifies aurantiamide acet
 ## Scripts
 | Script | Purpose |
 |---|---|
-| `00_config.R` | Paths, seeds, thresholds, design helper. No absolute paths. |
 | `01_impute_missforest.R` | Zeros -> NA, missForest imputation (seed 111). |
 | `02_normalise_and_limma.R` | NormalyzerDE benchmark, cyclic loess vs VSN, VSN chosen; limma + 6 contrasts. |
 | `03_pca.R` | PCA on raw (log2), imputed (log2), VSN (already glog2). |
@@ -24,7 +23,7 @@ Analysis code for Structure-based virtual screening identifies aurantiamide acet
 
 
 ## Reproducibility notes
-- missForest is stochastic; seed fixed in `00_config.R`. The exact imputed
+- missForest is stochastic; The exact imputed
   matrix used for the paper is deposited on Zenodo.
 - VSN output is on a generalised log2 scale, so it is NOT logged again
   before PCA or limma. logFC values are already log2 differences.
