@@ -28,27 +28,8 @@ set.seed(111)
 iris.na <- iris
 for (i in 1:4) iris.na[sample(150, sample(20, 1)), i] <- NA
 
-# Impute missing values using missForest
-iris.imputed <- missForest(iris.na)$ximp
 
-# View the imputed dataset
-head(iris.imputed)
-
-dtIN <- read.xlsx("proteinGroups_intensity_p-Value-posthoc-annotation.xlsx")
-
-dt_info <- dtIN[, !grepl("Intensity", colnames(dtIN))]
-dt_intensity.imputed <- readRDS("randomForest_imputed_intensity.rds")
-
-head(dt_intensity.imputed)
-head(dt_intensity[1:100,])
-
-dt_update <- cbind(dt_info, dt_intensity.imputed)
-head(dt_update)
-dim(dt_update)
-
-#saveRDS(dt_update, "randomForest_imputed_intensity_dt.rds")
-
-dt_update <- readRDS("randomForest_imputed_intensity_dt.rds")
+dt_update <- readRDS("intensity_dt.rds")
 
 #to retrieve from Uniprot
   #write.table(unique(dt_update$Protein.IDs), "to_uniprot.txt", quote = F, row.names = F, col.names = F)
@@ -59,7 +40,7 @@ dt_update <- readRDS("randomForest_imputed_intensity_dt.rds")
   library(preprocessCore) # For quantile normalization
   library(NormalyzerDE)   # For normalization evaluation
   
-  intensity_data <- dt_intensity.imputed
+
   head(intensity_data)
   
   design <- data.frame(
@@ -101,9 +82,9 @@ dt_update <- readRDS("randomForest_imputed_intensity_dt.rds")
   
 #decided to use VSN normalisation
 # Perform normalization
-  loess_normalized_data <- normalizeCyclicLoess(as.matrix((dt_intensity.imputed)))  
+  loess_normalized_data <- normalizeCyclicLoess(as.matrix((dt_intensity)))  
   head(loess_normalized_data[1:10,1:10])
-  vsn_normalized_data <- performVSNNormalization(as.matrix(dt_intensity.imputed))
+  vsn_normalized_data <- performVSNNormalization(as.matrix(dt_intensity))
   head(vsn_normalized_data)
   vsn_normalized_data <- as.matrix(as.data.frame(vsn_normalized_data))
   row.names(vsn_normalized_data) <- dt_info$Protein.IDs
@@ -166,7 +147,7 @@ dt_update <- readRDS("randomForest_imputed_intensity_dt.rds")
       tomatch = gsub("\\;.*", "", Protein)
     )
   sig_results_uniprot <- merge(sig_results, uniprot_out, by.x = "tomatch", by.y = "From", all.x = T, all.y = F)
-  write.xlsx(sig_results_uniprot, "significant_imputed_limma_uniprot.xlsx")
+  write.xlsx(sig_results_uniprot, "significant_d_limma_uniprot.xlsx")
   
   #with data
   sig_results_summary <- sig_results_uniprot %>%
@@ -179,7 +160,7 @@ dt_update <- readRDS("randomForest_imputed_intensity_dt.rds")
       Protein.names = paste(Protein.names, collapse = ", ")
     )
   
-  write.xlsx(sig_results_summary, "significant_imputed_limma_summary.xlsx")
+  write.xlsx(sig_results_summary, "significant_d_limma_summary.xlsx")
   
   #
   head(sig_results_uniprot)
@@ -196,7 +177,7 @@ dt_update <- readRDS("randomForest_imputed_intensity_dt.rds")
       OUTLIST[[paste(compareIN, UPDO, sep = "_")]] <- sig_results_uniprot %>% dplyr::filter(Comparison %in% compareIN, direction %in% UPDO)
     }
   }
-  write.xlsx(OUTLIST, "significant_imputed_limma_uniprot_subset.xlsx")
+  write.xlsx(OUTLIST, "significant_d_limma_uniprot_subset.xlsx")
   
  #upset plot of protein
   OUTLIST
