@@ -47,23 +47,23 @@ dbs <- listEnrichrDbs()
 dtIN <- read.xlsx("proteinGroups_intensity_p-Value-posthoc-annotation.xlsx")
 dt_info <- dtIN[, !grepl("Intensity", colnames(dtIN))]
 
-dt_update <- readRDS("randomForest_imputed_intensity_dt.rds")
-dt_intensity.imputed <- readRDS("randomForest_imputed_intensity.rds")
+dt_update <- readRDS("randomForest__intensity_dt.rds")
+dt_intensity. <- readRDS("randomForest__intensity.rds")
 uniprot_out <- read.csv("Uniprot_retrieve_idmapping_2025_02_08.tsv", sep = "\t")
-vsn_normalized_data <- readRDS("randomForest_imputed_intensity_normalised.rds")
+vsn_normalized_data <- readRDS("randomForest__intensity_normalised.rds")
 
 # Perform normalization
-loess_normalized_data <- normalizeCyclicLoess(as.matrix((dt_intensity.imputed)))  
+loess_normalized_data <- normalizeCyclicLoess(as.matrix((dt_intensity.)))  
 head(loess_normalized_data[1:10,1:10])
-vsn_normalized_data <- performVSNNormalization(as.matrix(dt_intensity.imputed))
+vsn_normalized_data <- performVSNNormalization(as.matrix(dt_intensity.))
 head(vsn_normalized_data)
 vsn_normalized_data <- as.matrix(as.data.frame(vsn_normalized_data))
 row.names(vsn_normalized_data) <- dt_info$Protein.IDs
 
-#saveRDS(vsn_normalized_data, "randomForest_imputed_intensity_normalised.rds")
+#saveRDS(vsn_normalized_data, "randomForest__intensity_normalised.rds")
 
 ################Stat-test#########################
-    intensity_data <- dt_intensity.imputed
+    intensity_data <- dt_intensity.
     head(intensity_data)
     
     design <- data.frame(
