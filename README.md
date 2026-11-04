@@ -16,7 +16,7 @@ Analysis code for Structure-based virtual screening identifies aurantiamide acet
 ## Scripts
 | Script | Purpose |
 |---|---|
-| `01_impute_missforest.R` | Zeros -> NA, missForest imputation (seed 111). |
+| `01_impute_missforest.R` | Zeros -> NA. |
 | `02_normalise_and_limma.R` | NormalyzerDE benchmark, cyclic loess vs VSN, VSN chosen; limma + 6 contrasts. |
 | `03_pca.R` | PCA on raw (log2), imputed (log2), VSN (already glog2). |
 | `04_enrichment_volcano.R` | Volcanoes, UpSet, topGO, clusterProfiler, KEGG, Enrichr. |
