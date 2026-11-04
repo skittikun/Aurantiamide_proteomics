@@ -47,18 +47,18 @@ dbs <- listEnrichrDbs()
 dtIN <- read.xlsx("proteinGroups_intensity_p-Value-posthoc-annotation.xlsx")
 dt_info <- dtIN[, !grepl("Intensity", colnames(dtIN))]
 
-dt_update <- readRDS("randomForest_imputed_intensity_dt.rds")
-dt_intensity.imputed <- readRDS("randomForest_imputed_intensity.rds")
+dt_update <- readRDS("randomForest__intensity_dt.rds")
+dt_intensity. <- readRDS("randomForest__intensity.rds")
 uniprot_out <- read.csv("Uniprot_retrieve_idmapping_2025_02_08.tsv", sep = "\t")
-vsn_normalized_data <- readRDS("randomForest_imputed_intensity_normalised.rds")
+vsn_normalized_data <- readRDS("randomForest__intensity_normalised.rds")
 
 #pca on raw reads
     str(dt_update)
-    str(dt_intensity.imputed)
+    str(dt_intensity.)
     str(vsn_normalized_data)
     
     ## =============================================================
-    ## PCA for three proteomics matrices: raw, imputed, VSN
+    ## PCA for three proteomics matrices: raw, , VSN
     ## Samples: AB, Ar1-AB, Ar10-AB, SF  x  N1-N4  (16 samples)
     ## =============================================================
     
@@ -73,8 +73,8 @@ vsn_normalized_data <- readRDS("randomForest_imputed_intensity_normalised.rds")
     mat_raw     <- as.matrix(dt_update[, intensity_cols])
     rownames(mat_raw) <- dt_update$Protein.IDs
     
-    mat_imputed <- as.matrix(dt_intensity.imputed)
-    rownames(mat_imputed) <- dt_update$Protein.IDs
+    mat_ <- as.matrix(dt_intensity.)
+    rownames(mat_) <- dt_update$Protein.IDs
     
     mat_vsn     <- as.matrix(vsn_normalized_data)
     
@@ -139,7 +139,7 @@ vsn_normalized_data <- readRDS("randomForest_imputed_intensity_normalised.rds")
     
     datasets <- list(
       list(mat = mat_raw,     do_log = TRUE,  label = "Raw (log2)"),
-      list(mat = mat_imputed, do_log = TRUE,  label = "Imputed (log2)"),
+      list(mat = mat_, do_log = TRUE,  label = " (log2)"),
       list(mat = mat_vsn,     do_log = FALSE, label = "VSN normalised")
     )
     
