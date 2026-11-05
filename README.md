@@ -3,7 +3,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21932775.svg)](https://doi.org/10.5281/zenodo.21932775)
 
 
-Analysis code for *Structure-based virtual screening identifies aurantiamide acetate as an IDO1 inhibitor with neuroprotective effects against Aβ42 toxicity*. Archived at v[X.Y.Z].
+Analysis code for *Structure-based virtual screening identifies aurantiamide acetate as an IDO1 inhibitor with neuroprotective effects against Aβ42 toxicity*. Archived at v1.0.0 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23971634.svg)](https://doi.org/10.5281/zenodo.23971634).
 
 ## Design
 12 samples: SF (control), AB, Ar1-AB, Ar10-AB; n = 3 each.
