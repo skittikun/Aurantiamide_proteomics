@@ -1,6 +1,7 @@
 # Aurantiamide proteomics analysis
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23972052.svg)](https://doi.org/10.5281/zenodo.23972052)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21932775.svg)](https://doi.org/10.5281/zenodo.21932775)
+
 
 Analysis code for *Structure-based virtual screening identifies aurantiamide acetate as an IDO1 inhibitor with neuroprotective effects against Aβ42 toxicity*. Archived at v[X.Y.Z].
 
